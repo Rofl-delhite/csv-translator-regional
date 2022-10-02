@@ -1,0 +1,22 @@
+{
+  "name": "csv-translator-regional",
+  "version": "1.0.0",
+  "description": "Translate csv from English to different regional Indian languages.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rofl-delhite/csv-translator-regional.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rofl-delhite/csv-translator-regional/issues"
+  },
+  "homepage": "https://github.com/Rofl-delhite/csv-translator-regional#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
