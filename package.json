@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Rofl-delhite/csv-translator-regional#readme",
   "dependencies": {
-    "express": "^4.18.1"
+    "express": "^4.18.1",
+    "require": "^2.4.20"
   }
 }
