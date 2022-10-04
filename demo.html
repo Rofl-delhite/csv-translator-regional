@@ -58,16 +58,39 @@
       </div>
     </nav>
     <!-- header ends -->
+
     <!-- input for csv file -->
-    <input
-      class="container m-5"
-      id="input"
-      name="csv"
-      type="file"
-      accept=".csv"
-    />
+    <form
+      method="POST"
+      class="container my-4"
+      action="/save"
+      enctype="multipart/form-data"
+    >
+      <input id="input" type="file" accept=".csv" name="file" />
+      <input type="submit" value="upload" />
+    </form>
+    <div class="container">
+      <p>
+        Choose file (.csv) to display the content as a list and click upload
+        button
+      </p>
+      <p>
+        Now, chooose the language you want to download this file in the same.
+      </p>
+      <p>You can choose the download file to view as a list.</p>
+    </div>
+    <!-- translate buttons -->
+    <div class="container">
+      <a type="button" class="btn btn-primary mx-1" href="/telugu"> Telugu </a>
+      <a type="button" class="btn btn-primary mx-1" href="/hindi"> Hindi </a>
+      <a type="button" class="btn btn-primary mx-1" href="/marathi">
+        Marathi
+      </a>
+      <a type="button" class="btn btn-primary mx-1" href="punjabi"> Punjabi </a>
+    </div>
+    <!-- translate buttons -->
     <!-- table to display csv data -->
-    <table class="container border text-center table table-striped">
+    <table class="container mt-5 border text-center table table-striped">
       <thead>
         <tr id="tableHeader"></tr>
       </thead>
@@ -96,13 +119,15 @@
         }
       }
       var fileInput = document.getElementById("input");
+      let parsedData = "";
       fileInput.addEventListener("change", (event) => {
         var csvInput = event.target;
         var file = csvInput.files[0];
         document.getElementById("tableBody").innerHTML = "";
         document.getElementById("tableHeader").innerHTML = "";
         Papa.parse(file, {
-          complete: function (results) {
+          complete: (results) => {
+            parsedData = results;
             for (let i = 0; i < results.data.length - 1; i++) {
               if (i === 0) {
                 for (let j = 0; j < results.data[i].length; j++) {
