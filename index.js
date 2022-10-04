@@ -21,7 +21,7 @@ app.post(`/save`, (req, res) => {
   translateText("en", res);
 });
 app.get("/doc", (req, res) => {
-  res.sendFile(path.join(__dirname, "doc.html"));
+  res.sendFile(path.join(__dirname, "docs.html"));
 });
 app.get("/hindi", (req, res) => {
   const file = fs.readFileSync("en.csv", "utf8");
