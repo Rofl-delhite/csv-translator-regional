@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.1/papaparse.min.js"
+      integrity="sha512-EbdJQSugx0nVWrtyK3JdQQ/03mS3Q1UiAhRtErbwl1YL/+e2hZdlIcSURxxh7WXHTzn83sjlh2rysACoJGfb6g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+  </head>
+  <body>
+    <!-- header starts -->
+    <nav class="navbar navbar-expand-lg bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/"> Csv-translator </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="/"> Home </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/doc"> Documentation </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/demo"> Demo </a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="https://github.com/Rofl-delhite/csv-translator-regional"
+              >
+                Github
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- header ends -->
+
+    <!-- input for csv file -->
+    <form
+      method="POST"
+      class="container my-4"
+      action="/save"
+      enctype="multipart/form-data"
+    >
+      <input id="input" type="file" accept=".csv" name="file" />
+      <input type="submit" value="upload" />
+    </form>
+    <div class="container">
+      <p>
+        Choose file (.csv) to display the content as a list and click upload
+        button
+      </p>
+      <p>
+        Now, chooose the language you want to download this file in the same.
+      </p>
+      <p>You can choose the download file to view as a list.</p>
+    </div>
+    <!-- translate buttons -->
+    <div class="container">
+      <a type="button" class="btn btn-primary mx-1" href="/telugu"> Telugu </a>
+      <a type="button" class="btn btn-primary mx-1" href="/hindi"> Hindi </a>
+      <a type="button" class="btn btn-primary mx-1" href="/marathi">
+        Marathi
+      </a>
+      <a type="button" class="btn btn-primary mx-1" href="punjabi"> Punjabi </a>
+    </div>
+    <!-- translate buttons -->
+    <!-- table to display csv data -->
+    <table class="container mt-5 border text-center table table-striped">
+      <thead>
+        <tr id="tableHeader"></tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+    <!-- scripts starts -->
+    <script>
+      function createDataElement(htmlTag, innerText, idParent) {
+        let node = document.createElement(htmlTag);
+        let textnode = document.createTextNode(innerText);
+        node.appendChild(textnode);
+        document.getElementById(idParent).appendChild(node);
+      }
+      function createHeaderElement(columnText) {
+        createDataElement("th", columnText, "tableHeader");
+      }
+      function createCellData(rowIndex, dataIndex, cellText) {
+        if (dataIndex === 0) {
+          let node = document.createElement("tr");
+          node.setAttribute("id", "row" + rowIndex);
+          document.getElementById("tableBody").appendChild(node);
+
+          createDataElement("td", cellText, "row" + rowIndex);
+        } else {
+          createDataElement("td", cellText, "row" + rowIndex);
+        }
+      }
+      var fileInput = document.getElementById("input");
+      let parsedData = "";
+      fileInput.addEventListener("change", (event) => {
+        var csvInput = event.target;
+        var file = csvInput.files[0];
+        document.getElementById("tableBody").innerHTML = "";
+        document.getElementById("tableHeader").innerHTML = "";
+        Papa.parse(file, {
+          complete: (results) => {
+            parsedData = results;
+            for (let i = 0; i < results.data.length - 1; i++) {
+              if (i === 0) {
+                for (let j = 0; j < results.data[i].length; j++) {
+                  createHeaderElement(results.data[i][j]);
+                }
+              }
+              if (i > 0) {
+                for (let j = 0; j < results.data[i].length; j++) {
+                  createCellData(i, j, results.data[i][j]);
+                }
+              }
+            }
+          },
+        });
+      });
+    </script>
+    <!-- scripts ends -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
