@@ -25,7 +25,7 @@ Use the follwing git commands :-
 - `git init` Initializes empty git repository.
 - `git remote add origin` {paste the link of the respository} Now the remote to the respository is set to "origin".
 - `npm init` Initializes node in this repository.
-- `git pull` This brings all code to your local machine.
+- `git pull origin master` This brings all code to your local machine.
 - `npm install` This installs all the dependencies required for the project.
 
 <!-- USAGE EXAMPLES -->
