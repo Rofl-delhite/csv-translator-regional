@@ -1,14 +1,10 @@
 ## About The Project
 
-Csv-Translator
+## Csv-Translator
 
 Convert csv from English to different regional languages (Hindi,
 Marathi,Punjabi,Telugu). To do this, it make use of Google Translate
 API.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
 
@@ -31,8 +27,6 @@ Use the follwing git commands :-
 - `npm init` Initializes node in this repository.
 - `git pull` This brings all code to your local machine.
 - `npm install` This installs all the dependencies required for the project.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- USAGE EXAMPLES -->
 
